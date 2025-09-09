@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <div id ="welcome">
+            <h2> Welcome to Sbux!</h2>
+            <h3> Please enter the name for this order:</h3>
+            <input id="name">
+            <input type = "submit" onclick ="displayMain()">
+        </div>
+        <div id="main" style = "display: none;">
+        <div id = "drinkMenu">
+            <h3> Please select your drink </h3>
+            <select name = "drinkType" id = "drinkType">
+                <option value = "coffee"> Coffee </option>
+                <option value = "tea"> Tea </option>
+                <option value = "other"> other </option>
+            </select>
+        </div>
+        <div id="sizeSelection">
+            <select name = "drinkSize" id = "drinkSize">
+                <option value = "short"> Short </option>
+                <option value = "tall"> Tall </option>
+                <option value = "grande"> Grande </option>
+                <option value = "venti"> Venti </option>
+            </select>
+        </div>
+        <div id="tempSelection">
+            Hot: <input type = "radio" name="temp" id = "hot" checked> Cold: <input type = "radio" name="temp" id = "cold">
+        </div>
+        <div id="addInsSection">
+            Input addIns/comments: <input id ="drinkAddIns">
+        </div>
+        <div id="qtySection">
+            Select QTY: <input type="number" id="drinkQty">
+        </div>
+        <!-- <input type = "submit" onclick = "createDrink()"> -->
+        </div>
+        </body>
+        </html>
+        <script>
+            function displayMain() {
+                console.log("i worked");
+                document.getElementById("main").style.display = "block";
+            }
+
+            class Drink {
+                constructor (
+                    type = "coffee",
+                    size = "grande",
+                    temp = "hot",
+                    addIns = undefined,
+                    qty = 1
+                )
+                {
+                    this.type = type;
+                    this.size = size;
+                    this.temp = temp;
+                    this.addIns = addIns;
+                    this.qty = qty;
+                }
+                createDrink() {
+                let type = document.getElementById("drinkType").value;
+                let size = document.getElementById("drinkSize").value; 
+                let temp;
+                if (document.getElementById("hot").checked) {
+                    temp = "hot";
+                }
+                else {
+                    temp = "cold";
+                }
+                let addIns = document.getElementById("drinkAddIns").value;
+                let qty = document.getElementById("drinkQty").value;
+                const madeDrink = new Drink(type, size, temp, addIns, qty)
+                document.write(madeDrink);
+            }
+            display(){
+                //qty tem size type, addins as per thing OR q size temp type addins
+                
+            }
+            }
+
+            // function createDrink() {
+            //     let type = document.getElementById("drinkType").value;
+            //     let size = document.getElementById("drinkSize").value; 
+            //     let temp;
+            //     if (document.getElementById("hot").checked) {
+            //         temp = "hot";
+            //     }
+            //     else {
+            //         temp = "cold";
+            //     }
+            //     let addIns = document.getElementById("drinkAddIns").value;
+            //     let qty = document.getElementById("drinkQty").value;
+            //     const madeDrink = new Drink(type, size, temp, addIns, qty)
+            //     document.write(madeDrink);
+            // }
+
+        </script>
+    </body>
+</html>
