@@ -11,35 +11,38 @@
         <div id = "drinkMenu">
             <h3> Please select your drink </h3>
             <select name = "drinkType" id = "drinkType">
-                <option value = "coffee"> Coffee </option>
-                <option value = "tea"> Tea </option>
-                <option value = "other"> other </option>
+                <option value = "Coffee"> Coffee </option>
+                <option value = "Tea"> Tea </option>
+                <option value = "Other"> other </option>
             </select>
         </div>
         <div id="sizeSelection">
             <select name = "drinkSize" id = "drinkSize">
-                <option value = "short"> Short </option>
-                <option value = "tall"> Tall </option>
-                <option value = "grande"> Grande </option>
-                <option value = "venti"> Venti </option>
+                <option value = "Short"> Short </option>
+                <option value = "Tall"> Tall </option>
+                <option value = "Grande" selected> Grande </option>
+                <option value = "Venti"> Venti </option>
             </select>
         </div>
         <div id="tempSelection">
-            Hot: <input type = "radio" name="temp" id = "hot" checked> Cold: <input type = "radio" name="temp" id = "cold">
+            Hot: <input type = "radio" name="temp" id = "Hot" checked> Cold: <input type = "radio" name="temp" id = "Cold">
         </div>
         <div id="addInsSection">
             Input addIns/comments: <input id ="drinkAddIns">
         </div>
         <div id="qtySection">
-            Select QTY: <input type="number" id="drinkQty">
+            Select QTY: <input type="number" id="drinkQty" value = "1" min="1" max="50">
         </div>
-        <!-- <input type = "submit" onclick = "createDrink()"> -->
+        <input type = "submit" onclick = "createDrink()">
+        <div id="selection" style ="display: none;">
+            <h3> Your drink selection:</h3>
+
+        </div>
         </div>
         </body>
         </html>
         <script>
             function displayMain() {
-                console.log("i worked");
                 document.getElementById("main").style.display = "block";
             }
 
@@ -58,42 +61,38 @@
                     this.addIns = addIns;
                     this.qty = qty;
                 }
-                createDrink() {
-                let type = document.getElementById("drinkType").value;
-                let size = document.getElementById("drinkSize").value; 
-                let temp;
-                if (document.getElementById("hot").checked) {
-                    temp = "hot";
+                create() {
+                    this.type = document.getElementById("drinkType").value;
+                    this.size = document.getElementById("drinkSize").value; 
+                    if (document.getElementById("Hot").checked) {
+                        this.temp = "hot";
+                    }
+                    else {
+                        this.temp = "cold";
+                    }
+                    this.addIns = document.getElementById("drinkAddIns").value;
+                    this.qty = document.getElementById("drinkQty").value;
                 }
-                else {
-                    temp = "cold";
-                }
-                let addIns = document.getElementById("drinkAddIns").value;
-                let qty = document.getElementById("drinkQty").value;
-                const madeDrink = new Drink(type, size, temp, addIns, qty)
-                document.write(madeDrink);
-            }
             display(){
-                //qty tem size type, addins as per thing OR q size temp type addins
-                
+                document.getElementById("selection").style.display = "block";
+                const drink = `<p> Drink: ${this.type} </p>\
+                        <p>Size: ${this.size}</p>\
+                        <p>Temperature: ${this.temp}</p>\
+                        <p>Add-ins/Comments: ${this.addIns || "None"}</p> \
+                        <p>Quantity: ${this.qty}</p>`;
+                document.getElementById("selection").innerHTML = drink;
             }
             }
 
-            // function createDrink() {
-            //     let type = document.getElementById("drinkType").value;
-            //     let size = document.getElementById("drinkSize").value; 
-            //     let temp;
-            //     if (document.getElementById("hot").checked) {
-            //         temp = "hot";
-            //     }
-            //     else {
-            //         temp = "cold";
-            //     }
-            //     let addIns = document.getElementById("drinkAddIns").value;
-            //     let qty = document.getElementById("drinkQty").value;
-            //     const madeDrink = new Drink(type, size, temp, addIns, qty)
-            //     document.write(madeDrink);
-            // }
+            function createDrink() {
+                const custName = document.getElementById("name").value;
+                const orderConf = `<p> Thank you for your order ${custName} </p>`;
+                const madeDrink = new Drink();
+                madeDrink.create();
+                madeDrink.display();
+                document.getElementById("selection").innerHTML += orderConf;
+
+            }
 
         </script>
     </body>
