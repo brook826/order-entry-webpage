@@ -4,12 +4,14 @@
         <div id ="welcome">
             <h2> Welcome to Sbux!</h2>
             <h3> Please enter the name for this order:</h3>
-            <input id="name">
-            <input type = "submit" onclick ="displayMain()">
+            <form onsubmit = "displayMain(); return false;">
+            <input id="name" required minlength = "2">
+            <input type = "submit">
+        </form>
         </div>
         <div id="main" style = "display: none;">
         <div id = "drinkMenu">
-            <h3> Please select your drink </h3>
+            <h3> Enter your drink below </h3>
             <select name = "drinkType" id = "drinkType">
                 <option value = "Coffee"> Coffee </option>
                 <option value = "Tea"> Tea </option>
@@ -86,7 +88,7 @@
 
             function createDrink() {
                 const custName = document.getElementById("name").value;
-                const orderConf = `<p> Thank you for your order ${custName} </p>`;
+                const orderConf = `<h4> Thank you for your order ${custName} </h4>`;
                 const madeDrink = new Drink();
                 madeDrink.create();
                 madeDrink.display();
