@@ -1,0 +1,23 @@
+body{
+    background-color: #ffeaf3;
+}
+
+h1{
+    font-family: "Nothing You Could do";
+}
+
+h3{
+    font-family: "The Girl Next Door";
+}
+
+body{
+    font-family: "Indie Flower";
+}
+
+select{
+    font-family: "Indie Flower";
+}
+
+input[type=submit]{
+    font-family: "Indie Flower"
+}
